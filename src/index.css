@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: 'DM Sans', ui-sans-serif, sans-serif;
+  background: #06110c;
+  color: #e8f3ea;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #b8f53d;
+  color: #06110c;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold transition
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2
+      focus-visible:ring-offset-ink disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-lime text-ink hover:bg-lime-300 active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply btn border border-white/10 bg-white/[0.03] text-mist hover:border-lime/40 hover:bg-white/[0.06];
+  }
+  .btn-danger {
+    @apply btn border border-red-400/30 bg-red-400/10 text-red-200 hover:bg-red-400/20;
+  }
+  .field {
+    @apply w-full min-h-[44px] rounded-xl border border-white/10 bg-ink-900 px-3.5 py-2.5 text-sm text-mist
+      placeholder:text-mist-dim focus:border-lime/60 focus:outline-none focus:ring-2 focus:ring-lime/20;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-mist-muted;
+  }
+  .card {
+    @apply rounded-2xl border border-white/[0.07] bg-ink-800/80 shadow-card;
+  }
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(184, 245, 61, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 245, 61, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 100%);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 25%, rgba(255, 255, 255, 0.09) 50%, rgba(255, 255, 255, 0.04) 75%);
+  background-size: 800px 100%;
+  @apply animate-shimmer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-shimmer,
+  .animate-pulseDot {
+    animation: none;
+  }
+}
