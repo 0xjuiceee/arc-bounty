@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AlertTriangle } from 'lucide-react'
 import { BountyDetail } from '@/components/BountyDetail'
 import { ConnectDialog } from '@/components/ConnectDialog'
+import { FaucetDialog } from '@/components/FaucetDialog'
 import { Footer } from '@/components/Footer'
 import { Hero } from '@/components/Hero'
 import { HowItWorks } from '@/components/HowItWorks'
@@ -81,6 +82,7 @@ function Shell() {
       </main>
       <Footer />
       <ConnectDialog />
+      <FaucetDialog />
       <PostBountyDialog open={postOpen} onClose={() => setPostOpen(false)} />
       <BountyDetail bounty={selected} onClose={() => select(null)} />
     </div>

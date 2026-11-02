@@ -1,4 +1,4 @@
-import { ArrowRight, ExternalLink, ShieldCheck } from 'lucide-react'
+import { ArrowRight, Droplets, ExternalLink, ShieldCheck } from 'lucide-react'
 import { TokenUSDC } from '@web3icons/react'
 import { ESCROW_ADDRESS, explorerAddress, shortAddress } from '@/lib/arc'
 import { formatUsdcDisplay } from '@/lib/format'
@@ -49,6 +49,9 @@ export function Hero({ snapshot, loading, failed, onPost }: HeroProps) {
             <a href="#explore" className="btn-ghost !px-6">
               Browse work
             </a>
+            <button className="btn-ghost !px-5" onClick={w.openFaucet}>
+              <Droplets size={16} className="text-lime" /> Get test USDC
+            </button>
           </div>
           {w.address && (
             <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-ink-800/70 px-4 py-3">

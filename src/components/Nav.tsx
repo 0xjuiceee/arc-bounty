@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Check, ChevronDown, Copy, ExternalLink, LogOut, Wallet } from 'lucide-react'
+import { Check, ChevronDown, Copy, Droplets, ExternalLink, LogOut, Wallet } from 'lucide-react'
 import { explorerAddress, shortAddress } from '@/lib/arc'
 import { formatUsdcDisplay } from '@/lib/format'
 import { useWallet } from '@/wallet/types'
@@ -65,6 +65,16 @@ function AccountMenu() {
           </div>
           <button
             role="menuitem"
+            className="flex min-h-[44px] w-full items-center gap-2 rounded-xl px-3 text-sm text-lime hover:bg-white/5"
+            onClick={() => {
+              setOpen(false)
+              w.openFaucet()
+            }}
+          >
+            <Droplets size={15} /> Get test USDC
+          </button>
+          <button
+            role="menuitem"
             className="flex min-h-[44px] w-full items-center gap-2 rounded-xl px-3 text-sm text-mist hover:bg-white/5"
             onClick={() => {
               void navigator.clipboard.writeText(address).then(() => {
@@ -122,13 +132,19 @@ export function Nav() {
             {links}
           </nav>
         </div>
-        {w.address ? (
-          <AccountMenu />
-        ) : (
-          <button className="btn-primary" onClick={w.openConnect} disabled={w.connecting}>
-            <Wallet size={16} /> {w.connecting ? 'Connecting…' : 'Connect Wallet'}
+        <div className="flex items-center gap-2">
+          <button className="btn-ghost !px-3.5" onClick={w.openFaucet} aria-label="Get test USDC">
+            <Droplets size={16} className="text-lime" />
+            <span className="hidden sm:inline">Faucet</span>
           </button>
-        )}
+          {w.address ? (
+            <AccountMenu />
+          ) : (
+            <button className="btn-primary" onClick={w.openConnect} disabled={w.connecting}>
+              <Wallet size={16} /> {w.connecting ? 'Connecting…' : 'Connect Wallet'}
+            </button>
+          )}
+        </div>
       </div>
       <nav className="flex items-center gap-1 border-t border-white/[0.04] px-3 sm:hidden" aria-label="Primary mobile">
         {links}

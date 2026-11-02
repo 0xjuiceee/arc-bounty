@@ -36,6 +36,9 @@ export interface WalletContextValue {
   openConnect: () => void
   closeConnect: () => void
   connectOpen: boolean
+  openFaucet: () => void
+  closeFaucet: () => void
+  faucetOpen: boolean
 }
 
 export const WalletContext = createContext<WalletContextValue | null>(null)

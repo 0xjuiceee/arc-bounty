@@ -49,6 +49,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
   const [connecting, setConnecting] = useState(false)
   const [connectError, setConnectError] = useState<string | null>(null)
   const [connectOpen, setConnectOpen] = useState(false)
+  const [faucetOpen, setFaucetOpen] = useState(false)
   const restored = useRef(false)
 
   // EIP-6963 wallet discovery (MetaMask, Rabby, Coinbase Wallet, and other injected wallets).
@@ -290,10 +291,13 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       },
       closeConnect: () => setConnectOpen(false),
       connectOpen,
+      faucetOpen,
+      openFaucet: () => setFaucetOpen(true),
+      closeFaucet: () => setFaucetOpen(false),
     }),
     [
       kind, address, chainId, connecting, connectError, wallets, usdcBalance, connectInjected,
-      connectGoogle, disconnect, switchToArc, refreshBalance, sendTransaction, connectOpen,
+      connectGoogle, disconnect, switchToArc, refreshBalance, sendTransaction, connectOpen, faucetOpen,
     ],
   )
 

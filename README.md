@@ -123,7 +123,7 @@ Users can sign in with a Google account and get a non-custodial wallet. Keys are
 2. In Google Cloud, create an OAuth client and authorize your site's origin as a redirect URI (for example `http://localhost:5173` and your production URL).
 3. Set `VITE_CIRCLE_APP_ID` and `VITE_GOOGLE_CLIENT_ID` for the browser, and `CIRCLE_API_KEY` for the server.
 4. Run `bun run server` next to `bun run dev`. The dev server proxies `/api` to it.
-5. On Vercel, the static site does not run the server. Host `server/index.ts` on any Node or Bun host and route `/api/*` to it (for example with a `rewrites` entry in `vercel.json`).
+5. On Vercel, import the GitHub repository so Vercel builds it. The login routes run as a Vercel function from the `api/` folder, so no separate server is needed. Add `CIRCLE_API_KEY` (Secret) and the three `VITE_` variables (Config) in the project's Environment Variables, then redeploy. Uploading only the built `dist` folder does not run the function or read your variables.
 
 A Google wallet is a regular address on Arc Testnet. Fund it with test USDC (it needs some for gas) from the wallet menu's copied address. If a user loses access to their Google account, nobody can recover the wallet for them.
 

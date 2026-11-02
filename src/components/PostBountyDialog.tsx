@@ -82,7 +82,12 @@ export function PostBountyDialog({ open, onClose }: { open: boolean; onClose: ()
             Balance: {w.usdcBalance === undefined ? '…' : `${formatUsdcDisplay(w.usdcBalance)} USDC`}. Arc also uses USDC for gas, so keep a little extra.
           </p>
         )}
-        {lowBalance && <p role="alert" className="-mt-2 text-sm text-red-300">Your balance is lower than this reward. Use "Get test USDC" in the Arc Studio sidebar.</p>}
+        {lowBalance && (
+          <p role="alert" className="-mt-2 text-sm text-red-300">
+            Your balance is lower than this reward.{' '}
+            <button type="button" className="font-semibold text-lime underline" onClick={w.openFaucet}>Get test USDC</button>
+          </p>
+        )}
         <div>
           <label className="label" htmlFor="b-desc">Description</label>
           <textarea id="b-desc" className="field min-h-[120px] resize-y" maxLength={MAX_DESCRIPTION} placeholder="What needs to be done, and what proof will you accept?" value={description} onChange={(e) => setDescription(e.target.value)} disabled={busy} />
